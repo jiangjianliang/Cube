@@ -1,4 +1,4 @@
-package com.wander.cube;
+package com.wander.cube.util;
 
 import android.util.Log;
 import lejos.pc.comm.NXTComm;

@@ -1,5 +1,11 @@
 package com.wander.cube.state;
 
-public class CubeContext {
+import android.hardware.Camera;
 
+public interface CubeContext {
+	
+	public void setState(CubeState state);
+	public void push();
+	public Camera getCamera();
+	
 }

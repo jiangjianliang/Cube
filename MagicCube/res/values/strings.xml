@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, MagicCubeActivity!</string>
     <string name="app_name">MagicCube</string>
+    <string name="scan">Scan</string>
+    <string name="scan_act">ScanActivity</string>
 
 </resources>

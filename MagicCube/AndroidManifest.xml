@@ -18,18 +18,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ScanActivity"
+            android:label="@string/scan_act" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wander.cube.activity.MagicCubeActivity" />
+        </activity>
     </application>
 
-<!-- Bluetooth permission -->
-<uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+    <!-- Bluetooth permission -->
+    <uses-permission android:name="android.permission.BLUETOOTH" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" >
+    </uses-permission>
 
-<!-- SD card storage permission -->
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!-- SD card storage permission -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
 
-<!-- Camera permission -->
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-feature android:name="android.hardware.camera" />
-<uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <!-- Camera permission -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
 </manifest>
