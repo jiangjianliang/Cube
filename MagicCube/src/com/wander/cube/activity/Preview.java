@@ -33,7 +33,7 @@ class Preview extends SurfaceView implements SurfaceHolder.Callback {
 	public void surfaceCreated(SurfaceHolder holder) {
 		// The Surface has been created, acquire the camera and tell it where
 		// to draw.
-		System.out.println("in preview");
+		//System.out.println("in preview");
 		mCamera = Camera.open();
 		try {
 			mCamera.setPreviewDisplay(holder);
@@ -97,7 +97,7 @@ class Preview extends SurfaceView implements SurfaceHolder.Callback {
 		List<Size> sizes = parameters.getSupportedPreviewSizes();
 		Size optimalSize = getOptimalPreviewSize(sizes, w, h);
 		parameters.setPreviewSize(optimalSize.width, optimalSize.height);
-
+		//System.out.println(parameters.flatten());
 		mCamera.setParameters(parameters);
 		mCamera.startPreview();
 	}

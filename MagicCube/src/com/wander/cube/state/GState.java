@@ -6,7 +6,9 @@ public class GState extends CubeState {
 
 	@Override
 	public void handlePush(CubeContext context) {
-		//TODO
+		//TODO 获取前面得到的颜色数组,进行验证
+		
+		System.out.println("begin solving");
 	}
 
 }

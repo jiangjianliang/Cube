@@ -18,13 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ScanActivity"
-            android:label="@string/scan_act" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wander.cube.activity.MagicCubeActivity" />
-        </activity>
     </application>
 
     <!-- Bluetooth permission -->
