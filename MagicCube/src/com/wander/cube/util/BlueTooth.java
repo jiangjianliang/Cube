@@ -1,5 +1,7 @@
 package com.wander.cube.util;
 
+import java.io.IOException;
+
 import android.util.Log;
 import lejos.nxt.Motor;
 import lejos.nxt.remote.NXTCommand;
@@ -11,8 +13,8 @@ import lejos.pc.comm.NXTConnector;
 
 public class BlueTooth {
 
-	public final static int A_CORNER = 90;
-	public final static int B_CORNER = 90;
+	public final static int A_CORNER = 270;
+	public final static int B_CORNER = 270;
 
 	private final static String TAG = "BlueTooth";
 
@@ -53,7 +55,16 @@ public class BlueTooth {
 		NXTCommandConnector
 				.setNXTCommand(new NXTCommand(connector.getNXTComm()));
 	}
-
+	
+	public static void close(){
+		try {
+			connector.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+//TODO delete these
 	public static void motorARotate(int count) {
 		Motor.A.rotate(count);
 	}

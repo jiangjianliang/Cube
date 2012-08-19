@@ -1,9 +1,14 @@
 package com.wander.cube.activity;
 
+import java.util.List;
+
+import lejos.nxt.Motor;
+
 import com.wander.cube.state.CubeContext;
 import com.wander.cube.state.CubeState;
 import com.wander.cube.state.CubeStateFactory;
 import com.wander.cube.util.BlueTooth;
+import com.wander.cube.util.Robot;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +27,10 @@ public class MagicCubeActivity extends Activity implements CubeContext{
 	
 	private boolean running = false;
     
+	//TODO test Robot
+	int face = 0;
+	int count = 1;
+	
     
 	/** Called when the activity is first created. */
     @Override
@@ -32,6 +41,7 @@ public class MagicCubeActivity extends Activity implements CubeContext{
     }
     
     private void initConponent(){
+		
     	preview = (Preview)findViewById(R.id.preview);
     	scanBtn = (Button)findViewById(R.id.scan);
     	scanBtn.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +50,7 @@ public class MagicCubeActivity extends Activity implements CubeContext{
 				scanBtn.setEnabled(false);
 				//scanBtn.setVisibility(View.INVISIBLE);
 				camera = preview.mCamera;
-				BlueTooth.connectAndPrepare();
+				//BlueTooth.connectAndPrepare();
 				if(!running){
 					running = true;
 					CubeState nextState = CubeStateFactory.getState(CubeStateFactory.STATE_A);
@@ -48,6 +58,53 @@ public class MagicCubeActivity extends Activity implements CubeContext{
 					setState(nextState);
 					push();
 				}
+			}
+		});
+    	
+    	Button aMove1 = (Button)findViewById(R.id.aMove1);
+    	Button aMove2 = (Button)findViewById(R.id.aMove2);
+    	Button bMove = (Button)findViewById(R.id.bMove);
+    	
+    	aMove1.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				if(!running){
+					BlueTooth.connectAndPrepare();
+					running = true;
+				}
+				String sInput;
+				//sInput = "FU LF RU BL DF DR DB DL UL BU FR BR FRU FUL BLU BUR DRF DFL DLB DBR";
+				sInput = "BU FU UR LU DF DR DB DL LF BR LB RF UBL FRU ULF BUR DRF DFL DLB DBR";
+				System.out.println(com.wander.cube.util.CubeSolver.GetResult(sInput));
+				List<Integer> face = com.wander.cube.util.CubeSolver.getMoveList();
+				List<Integer> count = com.wander.cube.util.CubeSolver.getMoveAmountList();
+				
+				System.out.println("total steps is " + face.size());
+				for(int i =0; i < face.size(); i++){
+					Robot.run(face.get(i), count.get(i));
+				}
+				
+				/*
+				Robot.run(0, count);
+				count++;
+				if(count == 4){
+					face = (face + 1) % 6;
+					count = 1;
+				}*/
+			}
+		});
+    	
+    	aMove2.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+			}
+		});
+    	
+    	bMove.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
 			}
 		});
     }

@@ -35,7 +35,7 @@ public class FState extends CubeState {
 				}
 				camera.startPreview();
 				//TODO 转动马达
-				BlueTooth.motorBRotate(-BlueTooth.B_CORNER);
+				BlueTooth.motorBRotate(BlueTooth.B_CORNER);
 				BlueTooth.motorARotate(BlueTooth.A_CORNER);
 				
 				//set next state

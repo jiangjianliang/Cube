@@ -23,6 +23,7 @@ public class AState extends CubeState {
 				//作为测试，这里先采用将图片写入到文件的作法
 				try {
 					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+					System.out.println("width: "+bitmap.getWidth() + "height: "+bitmap.getHeight());
 					for(int i = 1; i < 100; i++){
 						System.out.println(bitmap.getPixel(i, i));
 					}
@@ -38,7 +39,8 @@ public class AState extends CubeState {
 				camera.startPreview();
 				//TODO 转动马达
 				BlueTooth.motorARotate(BlueTooth.A_CORNER);
-				
+				//TODO test
+				//BlueTooth.motorBRotate(BlueTooth.B_CORNER*100);
 				//set next state
 				CubeState nextState = CubeStateFactory.getState(CubeStateFactory.STATE_B);
 				nextState.setCamera(context.getCamera());

@@ -36,7 +36,7 @@ public class EState extends CubeState {
 				camera.startPreview();
 				//TODO 转动马达
 				BlueTooth.motorARotate(BlueTooth.A_CORNER*2);
-				
+				BlueTooth.motorBRotate(BlueTooth.B_CORNER*2);
 				//set next state
 				CubeState nextState = CubeStateFactory.getState(CubeStateFactory.STATE_F);
 				nextState.setCamera(context.getCamera());
