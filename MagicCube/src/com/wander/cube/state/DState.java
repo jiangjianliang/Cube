@@ -30,7 +30,7 @@ public class DState extends CubeState {
 					FileOutputStream outStream = new FileOutputStream(jpgFile);
 					outStream.write(data);
 					outStream.close();
-					//System.out.println("aaaaaaaaaaaaaaaaaaaaaaa");
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
