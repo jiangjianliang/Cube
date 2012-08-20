@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 import com.wander.cube.util.BlueTooth;
+import com.wander.cube.util.Robot;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,24 +21,19 @@ public class FState extends CubeState {
 				//作为测试，这里先采用将图片写入到文件的作法
 				try {
 					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-					/*
-					for(int i = 1; i < 100; i++){
-						System.out.println(bitmap.getPixel(i, i));
-					}
-					*/
+					
 					File jpgFile = new File("/sdcard/AAA/fState.jpg");
 					FileOutputStream outStream = new FileOutputStream(jpgFile);
 					outStream.write(data);
 					outStream.close();
-					System.out.println("aaaaaaaaaaaaaaaaaaaaaaa");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				camera.startPreview();
-				//TODO 转动马达
-				BlueTooth.motorBRotate(BlueTooth.B_CORNER);
-				BlueTooth.motorARotate(BlueTooth.A_CORNER);
-				
+				//转动马达
+				Robot.rotateBottom(-1);
+				Robot.rotatePaw();
+				Robot.rotateBottom(1);
 				//set next state
 				CubeState nextState = CubeStateFactory.getState(CubeStateFactory.STATE_G);
 				nextState.setCamera(context.getCamera());

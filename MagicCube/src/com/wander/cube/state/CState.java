@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 import com.wander.cube.util.BlueTooth;
+import com.wander.cube.util.Robot;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,8 +37,7 @@ public class CState extends CubeState {
 				}
 				camera.startPreview();
 				//TODO 转动马达
-				BlueTooth.motorARotate(BlueTooth.A_CORNER);
-				
+				Robot.rotatePaw();
 				//set next state
 				CubeState nextState = CubeStateFactory.getState(CubeStateFactory.STATE_D);
 				nextState.setCamera(context.getCamera());

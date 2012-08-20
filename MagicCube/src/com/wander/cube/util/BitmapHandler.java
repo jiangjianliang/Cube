@@ -27,7 +27,7 @@ public class BitmapHandler {
 		pointList.add(new Point(SMALL_WIDTH*5 - HALF_BLOCK_WIDTH, SMALL_WIDTH*5 - HALF_BLOCK_WIDTH));
 	}
 	
-	private static List<Integer> rotateList = new ArrayList<Integer>();
+	/*private static List<Integer> rotateList = new ArrayList<Integer>();
 	static{
 		rotateList.add(2);
 		rotateList.add(5);
@@ -39,7 +39,7 @@ public class BitmapHandler {
 		rotateList.add(3);
 		rotateList.add(6);
 	}
-	
+	*/
 	
 	private static int START_X = 0;
 	private static int START_Y = 0;
@@ -61,7 +61,7 @@ public class BitmapHandler {
 	
 	private static void block(Bitmap bitmap, int count){
 		int[] pixels = new int[BLOCK_WIDTH * BLOCK_WIDTH];
-		List<SimpleColor> originalColorList= new ArrayList<SimpleColor>();
+		//List<SimpleColor> originalColorList= new ArrayList<SimpleColor>();
 		for(int i = 0; i < 9; i++){
 			bitmap.getPixels(pixels, 0, bitmap.getWidth(), START_X, START_Y, BLOCK_WIDTH, BLOCK_WIDTH);
 			//process pixels array
@@ -79,12 +79,6 @@ public class BitmapHandler {
 			//TODO originalColorList.add(simpleColor);
 			MagicCube.addColor(simpleColor);
 		}
-		
-		/*
-		for(Integer rotate : rotateList){
-			MagicCube.addColorToCount(count, originalColorList.get(rotate));
-		}
-		*/
 	}
 	
 }

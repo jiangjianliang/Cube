@@ -58,16 +58,8 @@ public class MagicCubeActivity extends Activity implements CubeContext{
 					setState(nextState);
 					push();
 				}
-			}
-		});
-    	
-    	Button aMove1 = (Button)findViewById(R.id.aMove1);
-    	Button aMove2 = (Button)findViewById(R.id.aMove2);
-    	Button bMove = (Button)findViewById(R.id.bMove);
-    	
-    	aMove1.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
+				
+				/*
 				if(!running){
 					BlueTooth.connectAndPrepare();
 					running = true;
@@ -84,27 +76,13 @@ public class MagicCubeActivity extends Activity implements CubeContext{
 					Robot.run(face.get(i), count.get(i));
 				}
 				
-				/*
+				
 				Robot.run(0, count);
 				count++;
 				if(count == 4){
 					face = (face + 1) % 6;
 					count = 1;
 				}*/
-			}
-		});
-    	
-    	aMove2.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				
-			}
-		});
-    	
-    	bMove.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				
 			}
 		});
     }

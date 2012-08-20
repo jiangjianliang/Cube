@@ -12,10 +12,9 @@ public class Robot {
 	
 	private static int BaseRotateFix = -50;
 	
-	private static RemoteMotor paw=Motor.A;
-	private static RemoteMotor bottom=Motor.B;
-	
-	//private static RemoteMotor monitor=Motor.C;
+	private static RemoteMotor paw = Motor.A;
+	private static RemoteMotor bottom = Motor.B;	
+	private static RemoteMotor camera = Motor.C;
 	/**
 	 * 
 	 * @param face 0-5,FBRLUD
@@ -52,27 +51,27 @@ public class Robot {
 	 * FFF -> B'PPPSPB
 	 */
 	public static void slideF(int count){
-		RotateBottom(-1);
-		RotatePaw();
-		RotatePaw();
-		RotatePaw();
+		rotateBottom(-1);
+		rotatePaw();
+		rotatePaw();
+		rotatePaw();
 		
 		slideBottom(count);
 		
-		RotatePaw();
-		RotateBottom(1);
+		rotatePaw();
+		rotateBottom(1);
 	}
 	
 	private static void slideBottom(int count){
 		switch(count){
 		case 1:
-			RotateBottomSide(-1);
+			rotateBottomSide(-1);
 			break;
 		case 2:
-			RotateBottomSide(-2);
+			rotateBottomSide(-2);
 			break;
 		case 3:
-			RotateBottomSide(1);
+			rotateBottomSide(1);
 			break;
 		default:
 				;
@@ -82,51 +81,51 @@ public class Robot {
 	 * B -> BPPPxPB'
 	 */
 	public static void slideB(int count){
-		RotateBottom(1);
-		RotatePaw();
-		RotatePaw();
-		RotatePaw();
+		rotateBottom(1);
+		rotatePaw();
+		rotatePaw();
+		rotatePaw();
 		
 		slideBottom(count);
 		
-		RotatePaw();
-		RotateBottom(-1);
+		rotatePaw();
+		rotateBottom(-1);
 	}
 	/**
 	 * R -> PPPxP
 	 */
 	public static void slideR(int count){
-		RotatePaw();
-		RotatePaw();
-		RotatePaw();
+		rotatePaw();
+		rotatePaw();
+		rotatePaw();
 		
 		slideBottom(count);
 		
-		RotatePaw();
+		rotatePaw();
 	}
 	/**
 	 * L -> PxPPP
 	 */
 	public static void slideL(int count){
-		RotatePaw();
+		rotatePaw();
 		
 		slideBottom(count);
 		
-		RotatePaw();
-		RotatePaw();
-		RotatePaw();
+		rotatePaw();
+		rotatePaw();
+		rotatePaw();
 	}
 	/**
 	 * U -> PPxPP
 	 */
 	public static void slideU(int count){
-		RotatePaw();
-		RotatePaw();
+		rotatePaw();
+		rotatePaw();
 		
 		slideBottom(count);
 		
-		RotatePaw();
-		RotatePaw();
+		rotatePaw();
+		rotatePaw();
 	}
 	
 	/**
@@ -138,7 +137,7 @@ public class Robot {
 		
 	}
 	
-	public static void RotatePaw(){
+	public static void rotatePaw(){
 		paw.setSpeed(300);
 		paw.rotateTo(PawHoldPosition);
 		paw.setSpeed(400);
@@ -149,7 +148,7 @@ public class Robot {
 		paw.rotateTo(PawHoldPosition);
 	}
 	
-	public static void RotateBottom(int quarter)
+	public static void rotateBottom(int quarter)
 	{
 		bottom.rotate(quarter * BaseQuarter);
 	}	
@@ -158,7 +157,7 @@ public class Robot {
 	 * quarter > 0 clockwise
 	 * < 0 anti clockwise
 	 */
-	public static void RotateBottomSide(int quarter){
+	public static void rotateBottomSide(int quarter){
 		if(quarter == 0) 
 			return;
 		paw.setSpeed(400);
@@ -171,4 +170,11 @@ public class Robot {
 		paw.rotateTo(PawHoldPosition);
 	}
 	
+	public static void moveCameraForward(){
+		
+	}
+	
+	public static void moveCameraBackward(){
+		
+	}
 }
