@@ -15,7 +15,7 @@ public class GState extends CubeState {
 
 	@Override
 	public void handlePush(CubeContext context) {
-		//TODO 获取前面得到的颜色数组,进行验证
+		//获取前面得到的颜色数组,进行验证
 		
 		Log.i(TAG, "begin solving");
 		String cubeString = MagicCube.constructCubeString();

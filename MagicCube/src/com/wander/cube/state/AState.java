@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.wander.cube.util.BitmapHandler;
 import com.wander.cube.util.BlueTooth;
 import com.wander.cube.util.Robot;
 
@@ -24,10 +25,8 @@ public class AState extends CubeState {
 				//作为测试，这里先采用将图片写入到文件的作法
 				try {
 					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-					System.out.println("width: "+bitmap.getWidth() + "height: "+bitmap.getHeight());
-					for(int i = 1; i < 100; i++){
-						System.out.println(bitmap.getPixel(i, i));
-					}
+					BitmapHandler.handleBitmap(bitmap);
+					
 					File jpgFile = new File("/sdcard/AAA/aState.jpg");
 					FileOutputStream outStream = new FileOutputStream(jpgFile);
 					outStream.write(data);

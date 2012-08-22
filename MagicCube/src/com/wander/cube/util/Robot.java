@@ -8,7 +8,7 @@ public class Robot {
 	private static final int BaseQuarter = -270;
 
 	private static final int PawHoldPosition = 0;
-	private static final int PawTurnOverPosition = -100;
+	private static final int PawTurnOverPosition = -115;
 	
 	private static int BaseRotateFix = -50;
 	

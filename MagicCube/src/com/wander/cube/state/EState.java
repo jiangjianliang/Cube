@@ -3,6 +3,7 @@ package com.wander.cube.state;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import com.wander.cube.util.BitmapHandler;
 import com.wander.cube.util.BlueTooth;
 import com.wander.cube.util.Robot;
 
@@ -21,11 +22,9 @@ public class EState extends CubeState {
 				//作为测试，这里先采用将图片写入到文件的作法
 				try {
 					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-					/*
-					for(int i = 1; i < 100; i++){
-						System.out.println(bitmap.getPixel(i, i));
-					}
-					*/
+					
+					BitmapHandler.handleBitmap(bitmap);
+					
 					File jpgFile = new File("/sdcard/AAA/eState.jpg");
 					FileOutputStream outStream = new FileOutputStream(jpgFile);
 					outStream.write(data);
