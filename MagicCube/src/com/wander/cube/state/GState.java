@@ -18,7 +18,7 @@ public class GState extends CubeState {
 		//获取前面得到的颜色数组,进行验证
 		
 		Log.i(TAG, "begin solving");
-		String cubeString = MagicCube.constructCubeString();
+		String cubeString = MagicCube.getCubeString();
 		if (cubeString == null  || cubeString.equals("")){
 			Log.e(TAG, "fail to get cube string");
 		}
@@ -30,11 +30,8 @@ public class GState extends CubeState {
 		for(int i =0; i < face.size(); i++){
 			Robot.run(face.get(i), count.get(i));
 		}
-		//set next state
-		CubeState nextState = CubeStateFactory.getState(CubeStateFactory.STATE_H);
-		nextState.setCamera(context.getCamera());
-		context.setState(nextState);
-		context.push();
+		
+		setNextStateAndPush(CubeStateFactory.STATE_G, context);
 	}
-
+	
 }

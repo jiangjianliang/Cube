@@ -16,32 +16,20 @@ public class FState extends CubeState {
 	@Override
 	public void handlePush(final CubeContext context) {
 		camera.takePicture(null, null, new Camera.PictureCallback() {
-			
+
 			public void onPictureTaken(byte[] data, Camera camera) {
-				//TODO 这里对照片进行处理，获取颜色
-				//作为测试，这里先采用将图片写入到文件的作法
-				try {
-					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-					
-					BitmapHandler.handleBitmap(bitmap);
-					
-					File jpgFile = new File("/sdcard/AAA/fState.jpg");
-					FileOutputStream outStream = new FileOutputStream(jpgFile);
-					outStream.write(data);
-					outStream.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0,
+						data.length);
+				BitmapHandler.handleBitmap(bitmap);
+
+				storeImage(data, "/sdcard/AAA/fState.jpg");
 				camera.startPreview();
-				//转动马达
+				// 转动马达
 				Robot.rotateBottom(-1);
 				Robot.rotatePaw();
 				Robot.rotateBottom(1);
-				//set next state
-				CubeState nextState = CubeStateFactory.getState(CubeStateFactory.STATE_G);
-				nextState.setCamera(context.getCamera());
-				context.setState(nextState);
-				context.push();
+				// set next state
+				setNextStateAndPush(CubeStateFactory.STATE_G, context);
 			}
 		});
 
