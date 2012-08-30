@@ -23,7 +23,7 @@ public class FState extends CubeState {
 				BitmapHandler.handleBitmap(bitmap);
 
 				storeImage(data, "/sdcard/AAA/fState.jpg");
-				camera.startPreview();
+				//camera.startPreview();
 				// 转动马达
 				Robot.rotateBottom(-1);
 				Robot.rotatePaw();

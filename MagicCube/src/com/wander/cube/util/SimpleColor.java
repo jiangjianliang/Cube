@@ -8,6 +8,10 @@ public class SimpleColor {
 	private int blue;
 	private int color;
 	
+	private float redFactor;
+	private float greenFactor;
+	private float blueFactor;
+	
 	private static final int Red = 0;
 	private static final int Green = 1;
 	private static final int Blue = 2;
@@ -33,27 +37,28 @@ public class SimpleColor {
 		float redFactor = convToInt(red*(float)1.0/max);
 		float greenFactor = convToInt(green*(float)1.0/max);
 		float blueFactor = convToInt(blue*(float)1.0/max);
-		if( redFactor == 0){
-			if(blueFactor == 1)
-				color = Blue;
-			if(greenFactor == 1)
-				color = Green;
+		
+		if( greenFactor == 1 && redFactor < 1 && blueFactor < 1){
+			color = Green;
 		}
-		else{
-			if( greenFactor == 1){
-				if( blueFactor == 0)
-					color = Yellow;
-				else
-					color = White;
+		else if(blueFactor == 1 && redFactor < 1 && greenFactor < 1){
+			color = Blue;
+		}
+		else {
+			if ( redFactor == 1 && greenFactor == 1 && blueFactor == 1){
+				color = White;
 			}
-			else if( greenFactor == 0){
+			else if(redFactor == 1 && greenFactor == 0 && blueFactor < 1){
 				color = Red;
 			}
 			else{
-				color = Orange;
+				if(redFactor == 1 && greenFactor == 1)
+					color = Yellow;
+				else
+					color = Orange;
 			}
 		}
-		Log.i(TAG, "("+red + ","+ green +","+ blue + ")--("+redFactor + ","+ greenFactor +","+ blueFactor + ")--"+color);
+		Log.i(TAG, toString());
 	}
 	
 	private float convToInt(float num){
@@ -65,13 +70,19 @@ public class SimpleColor {
 			return num;
 	}
 	
+	@Deprecated
 	public int distanceTo(SimpleColor color) {
 		int diffRed = red - color.red;
 		int diffGreen = green - color.green;
 		int diffBlue = blue - color.blue;
 		return diffRed * diffRed + diffGreen* diffGreen + diffBlue* diffBlue;
 	}
-
+	
+	@Override
+	public String toString(){
+		return "("+red + ","+ green +","+ blue + ")--("+redFactor + ","+ greenFactor +","+ blueFactor + ")--"+color;
+	}
+	
 	public int getColor(){
 		return color;
 	}

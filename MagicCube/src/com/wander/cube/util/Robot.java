@@ -169,11 +169,11 @@ public class Robot {
 		
 		paw.rotateTo(PawHoldPosition);
 	}
-	
+	@Deprecated
 	public static void moveCameraForward(){
 		
 	}
-	
+	@Deprecated
 	public static void moveCameraBackward(){
 		
 	}

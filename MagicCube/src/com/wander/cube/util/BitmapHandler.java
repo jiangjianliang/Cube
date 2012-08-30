@@ -10,7 +10,7 @@ import android.util.Log;
 public class BitmapHandler {
 	private static final String TAG = "BitmapHandler";
 
-	private static int BLOCK_WIDTH = 4;
+	private static int BLOCK_WIDTH = 1;
 
 	private static int BLOCK_X1 = 170;
 	private static int BLOCK_X2 = 470;
@@ -44,7 +44,7 @@ public class BitmapHandler {
 
 	private static void setStartPoint(Bitmap bitmap) {
 		// set START_X,START_Y
-		START_X = 0;
+		START_X = -30;
 		START_Y = 0;
 	}
 
@@ -70,7 +70,6 @@ public class BitmapHandler {
 			SimpleColor simpleColor = new SimpleColor(red / BLOCK_WIDTH, green
 					/ BLOCK_WIDTH, blue / BLOCK_WIDTH);
 			MagicCube.addColor(simpleColor);
-			Log.i(TAG, "in block");
 		}
 	}
 
