@@ -9,9 +9,6 @@ public class CubeStateFactory {
 	public final static int STATE_E = 16;
 	public final static int STATE_F = 32;
 	public final static int STATE_G = 64;
-	public final static int STATE_H = 128;
-	public final static int STATE_I = 256;
-	public final static int STATE_J = 512;
 
 	public static CubeState getState(int option) {
 		CubeState state = null;
@@ -36,15 +33,6 @@ public class CubeStateFactory {
 			break;
 		case STATE_G:
 			state = new GState();
-			break;
-		case STATE_H:
-			state = new HState();
-			break;
-		case STATE_I:
-			state = new IState();
-			break;
-		case STATE_J:
-			state = new JState();
 			break;
 		default:
 		}

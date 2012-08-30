@@ -4,24 +4,26 @@ import lejos.nxt.Motor;
 import lejos.nxt.remote.RemoteMotor;
 
 public class Robot {
-	
+
 	private static final int BaseQuarter = -270;
 
 	private static final int PawHoldPosition = 0;
-	private static final int PawTurnOverPosition = -115;
-	
+	private static final int PawBeforeTurnOverPosition = -115;
+	private static final int PawAfterTurnOverPosition = -185;
 	private static int BaseRotateFix = -50;
-	
+
 	private static RemoteMotor paw = Motor.A;
-	private static RemoteMotor bottom = Motor.B;	
+	private static RemoteMotor bottom = Motor.B;
 	private static RemoteMotor camera = Motor.C;
+
 	/**
 	 * 
-	 * @param face 0-5,FBRLUD
+	 * @param face
+	 *            0-5,FBRLUD
 	 */
-	public static void run(int face, int count){
+	public static void run(int face, int count) {
 		count = count % 4;
-		switch(face){
+		switch (face) {
 		case 0:
 			slideF(count);
 			break;
@@ -44,26 +46,24 @@ public class Robot {
 			;
 		}
 	}
-	
+
 	/**
-	 * F -> B'PPPS'PB
-	 * FF -> B'PPPS'S'PB
-	 * FFF -> B'PPPSPB
+	 * F -> B'PPPS'PB FF -> B'PPPS'S'PB FFF -> B'PPPSPB
 	 */
-	public static void slideF(int count){
+	public static void slideF(int count) {
 		rotateBottom(-1);
 		rotatePaw();
 		rotatePaw();
 		rotatePaw();
-		
+
 		slideBottom(count);
-		
+
 		rotatePaw();
 		rotateBottom(1);
 	}
-	
-	private static void slideBottom(int count){
-		switch(count){
+
+	private static void slideBottom(int count) {
+		switch (count) {
 		case 1:
 			rotateBottomSide(-1);
 			break;
@@ -74,107 +74,109 @@ public class Robot {
 			rotateBottomSide(1);
 			break;
 		default:
-				;
+			;
 		}
 	}
+
 	/**
 	 * B -> BPPPxPB'
 	 */
-	public static void slideB(int count){
+	public static void slideB(int count) {
 		rotateBottom(1);
 		rotatePaw();
 		rotatePaw();
 		rotatePaw();
-		
+
 		slideBottom(count);
-		
+
 		rotatePaw();
 		rotateBottom(-1);
 	}
+
 	/**
 	 * R -> PPPxP
 	 */
-	public static void slideR(int count){
+	public static void slideR(int count) {
 		rotatePaw();
 		rotatePaw();
 		rotatePaw();
-		
+
 		slideBottom(count);
-		
+
 		rotatePaw();
 	}
+
 	/**
 	 * L -> PxPPP
 	 */
-	public static void slideL(int count){
+	public static void slideL(int count) {
 		rotatePaw();
-		
+
 		slideBottom(count);
-		
+
 		rotatePaw();
 		rotatePaw();
 		rotatePaw();
 	}
+
 	/**
 	 * U -> PPxPP
 	 */
-	public static void slideU(int count){
+	public static void slideU(int count) {
 		rotatePaw();
 		rotatePaw();
-		
+
 		slideBottom(count);
-		
+
 		rotatePaw();
 		rotatePaw();
 	}
-	
+
 	/**
 	 * D -> x
 	 */
-	public static void slideD(int count){
-		
+	public static void slideD(int count) {
+
 		slideBottom(count);
-		
+
 	}
-	
-	public static void rotatePaw(){
-		paw.setSpeed(300);
-		paw.rotateTo(PawHoldPosition);
+
+	public static void rotatePaw() {
 		paw.setSpeed(400);
-		paw.rotateTo(PawTurnOverPosition);
-		//paw.setSpeed(400);
-		paw.rotateTo(-180);
-		paw.rotateTo(-90);
+		paw.rotateTo(PawBeforeTurnOverPosition);
+		// paw.setSpeed(400);
+		paw.rotateTo(PawAfterTurnOverPosition);
+		paw.rotateTo(PawBeforeTurnOverPosition);
 		paw.rotateTo(PawHoldPosition);
 	}
-	
-	public static void rotateBottom(int quarter)
-	{
+
+	public static void rotateBottom(int quarter) {
 		bottom.rotate(quarter * BaseQuarter);
-	}	
-	
+	}
+
 	/**
-	 * quarter > 0 clockwise
-	 * < 0 anti clockwise
+	 * quarter > 0 clockwise < 0 anti clockwise
 	 */
-	public static void rotateBottomSide(int quarter){
-		if(quarter == 0) 
+	public static void rotateBottomSide(int quarter) {
+		if (quarter == 0)
 			return;
 		paw.setSpeed(400);
-		paw.rotateTo(PawTurnOverPosition);
-		
-		int fixAngle = BaseRotateFix * ((quarter > 0)?1:-1);
+		paw.rotateTo(PawBeforeTurnOverPosition);
+
+		int fixAngle = BaseRotateFix * ((quarter > 0) ? 1 : -1);
 		bottom.rotate(quarter * BaseQuarter + fixAngle);
 		bottom.rotate(-fixAngle);
-		
+
 		paw.rotateTo(PawHoldPosition);
 	}
+
 	@Deprecated
-	public static void moveCameraForward(){
-		
+	public static void moveCameraForward() {
+
 	}
+
 	@Deprecated
-	public static void moveCameraBackward(){
-		
+	public static void moveCameraBackward() {
+
 	}
 }
