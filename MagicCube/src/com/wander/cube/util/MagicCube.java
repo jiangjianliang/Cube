@@ -40,7 +40,8 @@ public class MagicCube {
 	public static String getCubeString() {
 
 		constructCubeString();
-		
+		// test
+		test();
 		if (!checkConstruction()) {
 			System.out.println(colorAmountList[0] + ";;" + colorAmountList[1]
 					+ ";;" + colorAmountList[2] + ";;" + colorAmountList[3]
@@ -49,8 +50,6 @@ public class MagicCube {
 		}
 
 		formatCubeString();
-		// test
-		test();
 
 		return cubeStr;
 	}
@@ -65,7 +64,7 @@ public class MagicCube {
 			if (squareIndex == BLANK)
 				cubeStr += " ";
 			else {
-				//System.out.println(colorList.get(squareIndex).getColor());
+				// System.out.println(colorList.get(squareIndex).getColor());
 				colorAmountList[colorList.get(squareIndex).getColor()]++;
 				cubeStr += colorList.get(squareIndex).getColor();
 			}
@@ -85,7 +84,8 @@ public class MagicCube {
 	private static void formatCubeString() {
 
 		for (int i = 0; i < coreIndexList.length; i++) {
-			String expr = String.valueOf(colorList.get(coreIndexList[i]).getColor());
+			String expr = String.valueOf(colorList.get(coreIndexList[i])
+					.getColor());
 			String sub = String.valueOf(charList[i]);
 			cubeStr = cubeStr.replaceAll(expr, sub);
 		}
@@ -94,15 +94,15 @@ public class MagicCube {
 	private static void test() {
 		String data = "";
 		for (int i = 0; i < colorList.size(); i++) {
-			if(i %9 == 0)
-				data += "\r\n" + i/9;
+			if (i % 9 == 0)
+				data += "\r\n" + i / 9;
 			data += colorList.get(i).toString() + "\r\n";
-			
+
 		}
 
-		data += "\r\n\r\n"+colorAmountList[0] + ";;" + colorAmountList[1]
-				+ ";;" + colorAmountList[2] + ";;" + colorAmountList[3]
-				+ ";;" + colorAmountList[4] + ";;" + colorAmountList[5];
+		data += "\r\n\r\n" + colorAmountList[0] + ";;" + colorAmountList[1]
+				+ ";;" + colorAmountList[2] + ";;" + colorAmountList[3] + ";;"
+				+ colorAmountList[4] + ";;" + colorAmountList[5];
 		try {
 			File logFile = new File("/sdcard/AAA/hello.txt");
 			FileOutputStream outStream = new FileOutputStream(logFile);

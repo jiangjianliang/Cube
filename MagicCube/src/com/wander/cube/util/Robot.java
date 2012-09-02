@@ -9,7 +9,7 @@ public class Robot {
 
 	private static final int PawHoldPosition = 0;
 	private static final int PawBeforeTurnOverPosition = -115;
-	private static final int PawAfterTurnOverPosition = -185;
+	private static final int PawAfterTurnOverPosition = -180;
 	private static int BaseRotateFix = -50;
 
 	private static RemoteMotor paw = Motor.A;

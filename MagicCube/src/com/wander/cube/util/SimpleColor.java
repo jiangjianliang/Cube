@@ -34,9 +34,9 @@ public class SimpleColor {
 		if(max < blue)
 			max = blue;
 		
-		float redFactor = convToInt(red*(float)1.0/max);
-		float greenFactor = convToInt(green*(float)1.0/max);
-		float blueFactor = convToInt(blue*(float)1.0/max);
+		redFactor = convToInt(red*(float)1.0/max);
+		greenFactor = convToInt(green*(float)1.0/max);
+		blueFactor = convToInt(blue*(float)1.0/max);
 		
 		if( greenFactor == 1 && redFactor < 1 && blueFactor < 1){
 			color = Green;

@@ -6,6 +6,7 @@ import com.wander.cube.util.BlueTooth;
 import com.wander.cube.util.CubeSolver;
 import com.wander.cube.util.MagicCube;
 import com.wander.cube.util.Robot;
+import com.wander.cube.util.SmartRobot;
 
 import android.util.Log;
 
@@ -26,6 +27,12 @@ public class GState extends CubeState {
 		List<Integer> count = CubeSolver.getMoveAmountList();
 		
 		Log.i(TAG, "total steps is " + face.size());
+		
+		//test
+		//SmartRobot.addMoveStep(face, count);
+		//SmartRobot.run();
+		
+		
 		for(int i =0; i < face.size(); i++){
 			Robot.run(face.get(i), count.get(i));
 		}

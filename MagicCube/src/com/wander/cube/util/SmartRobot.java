@@ -11,7 +11,7 @@ public class SmartRobot {
 
 	private static final int PawHoldPosition = 0;
 	private static final int PawBeforeTurnOverPosition = -115;
-	private static final int PawAfterTurnOverPosition = -185;
+	private static final int PawAfterTurnOverPosition = -180;
 
 	private static int BaseRotateFix = -50;
 
@@ -33,38 +33,54 @@ public class SmartRobot {
 	private static final int ActionB = 16;
 	private static final int ActionS = 32;
 
+	private static List<Integer> faceList;
+	private static List<Integer> moveList;
+	private static boolean[] faceFlag;
+
 	private static List<Integer> actionList;
 	private static List<Integer> timesList;
 	private static boolean[] actionFlag;
 
 	public static void addMoveStep(List<Integer> faces, List<Integer> moves) {
+		faceList = faces;
+		moveList = moves;
 
-		boolean[] faceFlag = new boolean[faces.size()];
+		simeplifyFace();
+		convertFace();
+
+		simplifyAction();
+		
+	}
+
+	private static void simeplifyFace() {
+		faceFlag = new boolean[faceList.size()];
 		for (int i = 0; i < faceFlag.length; i++) {
 			faceFlag[i] = true;
 		}
 		// sum up the same adjacent face's moves
-		for (int i = 0; i < faces.size() - 1; i++) {
-			if (faces.get(i) == faces.get(i + 1)) {
+		for (int i = 0; i < faceList.size() - 1; i++) {
+			if (faceList.get(i) == faceList.get(i + 1)) {
 				faceFlag[i] = false;
-				int sum = moves.get(i) + moves.get(i + 1);
-				moves.set(i + 1, sum);
+				int sum = moveList.get(i) + moveList.get(i + 1);
+				moveList.set(i + 1, sum);
 			}
 		}
-		
+	}
+
+	private static void convertFace() {
 		actionList = new ArrayList<Integer>();
 		timesList = new ArrayList<Integer>();
-		
+
 		// convert FBRLUD to PBS
 		for (int i = 0; i < faceFlag.length; i++) {
 			if (faceFlag[i] == false)
 				continue;
-			int amount = moves.get(i) % 4;
+			int amount = moveList.get(i) % 4;
 			//
 			if (amount == 0)
 				continue;
 
-			switch (faces.get(i)) {
+			switch (faceList.get(i)) {
 			case FaceF:
 				convFaceF(amount);
 				break;
@@ -85,20 +101,6 @@ public class SmartRobot {
 				break;
 			default:
 				;
-			}
-		}
-
-		// sum up the same adjacent action's amount
-		actionFlag = new boolean[actionList.size()];
-		for (int i = 0; i < actionFlag.length; i++) {
-			actionFlag[i] = true;
-		}
-
-		for (int i = 0; i < actionList.size() - 1; i++) {
-			if (actionList.get(i) == actionList.get(i + 1)) {
-				actionFlag[i] = false;
-				int sum = timesList.get(i) + timesList.get(i + 1);
-				timesList.set(i + 1, sum);
 			}
 		}
 	}
@@ -178,15 +180,89 @@ public class SmartRobot {
 		convActionS(amount);
 	}
 
-	public static void run() {
+	
+	
+	private static void simplifyAction() {
 		
+		actionFlag = new boolean[actionList.size()];
+		for (int i = 0; i < actionFlag.length; i++) {
+			actionFlag[i] = true;
+		}
+	
+		boolean flag;
+	
+		int firstTrueIndex = 0;
+	
+		do {
+	
+			flag = true;
+
+			// find first true action
+			for (int i = firstTrueIndex; i < actionFlag.length; i++) {
+				if (actionFlag[i] == false)
+					firstTrueIndex++;
+				else
+					break;
+			}
+	
+			for (int i = firstTrueIndex; i < actionFlag.length;) {
+	
+				int j = i + 1;
+				// find next true action
+				while (j < actionFlag.length && actionFlag[j] == false) {
+					j++;
+				}
+				// to the end, exit
+				if (j == actionFlag.length)
+					break;
+	
+				if (actionList.get(i) == actionList.get(j)) {
+					flag = false;
+					actionFlag[i] = false;
+	
+					int sum = timesList.get(i) + timesList.get(j);
+					timesList.set(j, sum);
+	
+				} else if (timesList.get(i) % 4 == 0) {
+					flag = false;
+					actionFlag[i] = false;
+				}
+	
+				// move to next true action
+				i = j;
+			}
+		} while (flag == false);
+	}
+
+	public static void run() {
+
 		actionList.add(0, ActionB);
 		actionList.add(ActionB);
-		
-		for (int i = 1; i < actionFlag.length-1; i++) {
-			if (actionFlag[i-1] == false)
-				continue;
-			runPBS(actionList.get(i-1), actionList.get(i+1), actionList.get(i), timesList.get(i));
+		int previous = 0;
+		int current = 1;
+		int next;
+		//find first true action, 0 excluded
+		while(current < actionFlag.length - 1 && actionFlag[current] == false){
+			current++;
+		}
+		if(current != actionFlag.length - 1){
+			while(current < actionFlag.length - 1){
+				//find next true action
+				next = current + 1;
+				while(next < actionFlag.length && actionFlag[next] == false){
+					next++;
+				}
+				
+				//when 'next' == 'actionFlag.length - 1', the loop will be terminated after it finishes
+				//so this condition will not take effect
+				if(next == actionFlag.length)
+					break;
+				
+				runPBS(actionList.get(previous), actionList.get(next), actionList.get(current), timesList.get(current));
+				
+				previous = current;
+				current = next;
+			}
 		}
 	}
 
