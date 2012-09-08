@@ -1,15 +1,11 @@
 package com.wander.cube.state;
 
-import java.io.File;
-import java.io.FileOutputStream;
-
-import com.wander.cube.util.BitmapHandler;
-import com.wander.cube.util.BlueTooth;
-import com.wander.cube.util.Robot;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+
+import com.wander.cube.robot.Robot;
+import com.wander.cube.util.BitmapHandler;
 
 public class CState extends CubeState {
 

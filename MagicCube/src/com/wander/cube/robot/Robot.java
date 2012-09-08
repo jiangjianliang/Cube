@@ -1,4 +1,4 @@
-package com.wander.cube.util;
+package com.wander.cube.robot;
 
 import lejos.nxt.Motor;
 import lejos.nxt.remote.RemoteMotor;
@@ -14,7 +14,7 @@ public class Robot {
 
 	private static RemoteMotor paw = Motor.A;
 	private static RemoteMotor bottom = Motor.B;
-	private static RemoteMotor camera = Motor.C;
+	//private static RemoteMotor camera = Motor.C;
 
 	/**
 	 * 

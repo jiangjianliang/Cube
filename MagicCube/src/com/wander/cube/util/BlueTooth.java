@@ -2,14 +2,11 @@ package com.wander.cube.util;
 
 import java.io.IOException;
 
-import android.util.Log;
-import lejos.nxt.Motor;
 import lejos.nxt.remote.NXTCommand;
-import lejos.pc.comm.NXTComm;
-import lejos.pc.comm.NXTCommFactory;
 import lejos.pc.comm.NXTCommLogListener;
 import lejos.pc.comm.NXTCommandConnector;
 import lejos.pc.comm.NXTConnector;
+import android.util.Log;
 
 public class BlueTooth {
 

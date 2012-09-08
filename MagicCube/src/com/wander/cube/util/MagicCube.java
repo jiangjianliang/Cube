@@ -1,7 +1,6 @@
 package com.wander.cube.util;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -21,10 +20,10 @@ public class MagicCube {
 
 	private static char[] charList = { 'U', 'R', 'D', 'L', 'F', 'B' };
 
-	private static int BLANK = 54;
+	private static byte BLANK = 54;
 	// URDLFB 0-53(4,... all center block index exclusive), 54 means " "
 	// UF UR UB UL DF DR DB DL FR FL BR BL UFR URB UBL ULF DRF DFL DLB DBR
-	private static int[] list = { 7, 37, BLANK, 5, 12, BLANK, 1, 52, BLANK, 3,
+	private static byte[] list = { 7, 37, BLANK, 5, 12, BLANK, 1, 52, BLANK, 3,
 			32, BLANK, 25, 43, BLANK, 21, 14, BLANK, 19, 46, BLANK, 23, 30,
 			BLANK, 41, 16, BLANK, 39, 34, BLANK, 50, 10, BLANK, 48, 28, BLANK,
 			8, 38, 15, BLANK, 2, 9, 53, BLANK, 0, 51, 29, BLANK, 6, 35, 36,
@@ -43,10 +42,10 @@ public class MagicCube {
 		// test
 		test();
 		if (!checkConstruction()) {
-			System.out.println(colorAmountList[0] + ";;" + colorAmountList[1]
+			Log.i(TAG, colorAmountList[0] + ";;" + colorAmountList[1]
 					+ ";;" + colorAmountList[2] + ";;" + colorAmountList[3]
 					+ ";;" + colorAmountList[4] + ";;" + colorAmountList[5]);
-			return null;
+			return "UF UR UB UL DF DR DB DL FR FL BR BL UFR URB UBL ULF DRF DFL DLB DBR";
 		}
 
 		formatCubeString();

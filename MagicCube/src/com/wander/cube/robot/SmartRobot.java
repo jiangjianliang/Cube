@@ -1,4 +1,4 @@
-package com.wander.cube.util;
+package com.wander.cube.robot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class SmartRobot {
 		paw.setSpeed(400);
 	}
 	private static RemoteMotor bottom = Motor.B;
-	private static RemoteMotor camera = Motor.C;
+	//private static RemoteMotor camera = Motor.C;
 
 	private static final int FaceF = 0;
 	private static final int FaceB = 1;

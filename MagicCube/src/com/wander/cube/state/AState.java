@@ -1,7 +1,7 @@
 package com.wander.cube.state;
 
+import com.wander.cube.robot.Robot;
 import com.wander.cube.util.BitmapHandler;
-import com.wander.cube.util.Robot;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

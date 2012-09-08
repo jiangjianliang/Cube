@@ -32,7 +32,7 @@ public class CubeStateFactory {
 			state = new FState();
 			break;
 		case STATE_G:
-			state = new GState();
+			state = new SolveState();
 			break;
 		default:
 		}

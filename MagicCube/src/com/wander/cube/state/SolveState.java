@@ -2,15 +2,14 @@ package com.wander.cube.state;
 
 import java.util.List;
 
+import android.util.Log;
+
+import com.wander.cube.robot.Robot;
 import com.wander.cube.util.BlueTooth;
 import com.wander.cube.util.CubeSolver;
 import com.wander.cube.util.MagicCube;
-import com.wander.cube.util.Robot;
-import com.wander.cube.util.SmartRobot;
 
-import android.util.Log;
-
-public class GState extends CubeState {
+public class SolveState extends CubeState {
 
 	private static final String TAG = "GState";
 
@@ -37,7 +36,7 @@ public class GState extends CubeState {
 			Robot.run(face.get(i), count.get(i));
 		}
 		
-		BlueTooth.close();
+		//BlueTooth.close();
 		//setNextStateAndPush(CubeStateFactory.STATE_G, context);
 	}
 	
